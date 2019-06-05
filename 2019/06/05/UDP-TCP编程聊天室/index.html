@@ -8,7 +8,7 @@
   <meta name="description" content>
   <meta name="author" content="John Doe">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="电影票多线程">
+  <meta property="og:title" content="UDP+TCP编程聊天室">
   <meta property="og:description" content>
   <meta property="og:site_name" content="Hexo">
   <meta property="og:type" content="article">
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">电影票多线程</p>
+          <p class="title">UDP+TCP编程聊天室</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -99,7 +99,7 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2019-06-04</span>
+            <span class="date">2019-06-05</span>
             <span class="time">21:06:30</span>
           </span>
           
@@ -108,20 +108,43 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h1 id="电影票订票系统"><a href="#电影票订票系统" class="headerlink" title="电影票订票系统"></a>电影票订票系统</h1><p>目标：<br>高并发场景下，100个用户每人抢2张票，完成以下任务</p>
+          <h1 id="TCP-UDP聊天室"><a href="#TCP-UDP聊天室" class="headerlink" title="TCP+UDP聊天室"></a>TCP+UDP聊天室</h1><blockquote>
+<blockquote>
+<p><strong>面向连接的TCP</strong><br>“面向连接”就是在正式通信前必须要与对方建立起连接。比如你给别人打电话，必须等线路接通了、对方拿起话筒才能相互通话。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><strong>面向非连接的UDP协议</strong><br>“面向非连接”就是在正式通信前不必与对方先建立连接，不管对方状态就直接发送。与手机短信非常相似：你在发短信的时候，只需要输入对方手机号就OK了。</p>
+</blockquote>
+</blockquote>
 <ol>
-<li>电影院一个放映厅，单场电影，卖100个座位的票。（基础，输出没买到的用户，以及买到者的座位号，优先连坐）</li>
-<li>电影院有10个放映厅厅，一天10场电影，每个场卖100张，总共10000张票。（升级）</li>
-<li>（高并发场景下1000个人，每人买20张）</li>
+<li>UDP互发消息</li>
+<li>TCP建立连接互发消息</li>
+<li>尝试建立UDP双人单聊</li>
+<li>尝试建立TCP多人群聊</li>
 </ol>
-<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><ol>
-<li>用布尔二维数组模拟 座位</li>
-<li>同步锁定seats二维数组</li>
-<li>seat占用时候有延迟会导致多占用，即多卖；service层延迟会导致一个线程只能购买一张。</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin git@github.com:asuraelvi1991/JavaLearning.git</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;tickets&quot;</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>UDP通讯协议的特点：<br>    1. 将数据极封装为数据包，面向无连接。<br>    2. 每个数据包大小限制在64K中<br>    3.因为无连接，所以不可靠<br>    4. 因为不需要建立连接，所以速度快<br>    5.udp 通讯是不分服务端与客户端的，只分发送端与接收端。<br>    比如： 物管的对讲机, 飞Q聊天、 游戏…</p>
+<h2 id="udp协议下的Socket"><a href="#udp协议下的Socket" class="headerlink" title="udp协议下的Socket:"></a>udp协议下的Socket:</h2><blockquote>
+<blockquote>
+</blockquote>
+<pre><code>DatagramSocket(udp插座服务)
+DatagramPacket(数据包类)
+DatagramPacket(buf, length, address, port)
+buf: 发送的数据内容
+length : 发送数据内容的大小。
+address : 发送的目的IP地址对象
+port : 端口号。</code></pre></blockquote>
+<p>发送端的使用步骤：<br>    1. 建立udp的服务。<br>    2. 准备数据，把数据封装到数据包中发送。 发送端的数据包要带上ip地址与端口号。<br>    3. 调用udp的服务，发送数据。<br>    4. 关闭资源。<br>接收端的使用步骤<br>    1. 建立udp的服务<br>    2. 准备空 的数据 包接收数据。<br>    3. 调用udp的服务接收数据。<br>    4. 关闭资源</p>
+<p>– TCP协议</p>
+<p>• URL</p>
+<p>• URLConnection</p>
+<p>• Socket</p>
+<p>• ServerSocket</p>
+<p>– UDP协议</p>
+<p>• DatagramPacket</p>
+<p>• DatagramSocket</p>
+<p>• MulticastSocket</p>
 
         </div>
       </div>
