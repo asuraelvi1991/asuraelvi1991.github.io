@@ -100,7 +100,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-06-09</span>
-            <span class="time">20:12:39</span>
+            <span class="time">23:24:13</span>
           </span>
           
         </div>
@@ -140,7 +140,79 @@
 
  3）结点值：node.getValue();
 
- 4）子结点文本值：node.elementText(&quot;子结点名&quot;)</code></pre>
+ 4）子结点文本值：node.elementText(&quot;子结点名&quot;)</code></pre><h1 id="手写服务器"><a href="#手写服务器" class="headerlink" title="手写服务器"></a>手写服务器</h1><p>1.获取请求协议</p>
+<blockquote>
+<ol>
+<li>建立serversocket </li>
+<li>建立链接获取socket<ol start="3">
+<li>通过输入输出流获取协议</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<p>  2.返回响音协议</p>
+<blockquote>
+<ol>
+<li>准备内容</li>
+<li>获取内容！！！字节！！！长度<ol start="3">
+<li>拼接响应协议</li>
+<li>使用输出流输出响应</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<p>  3.封装响应信息<br>  response</p>
+<blockquote>
+<ol>
+<li>动态添加内容print</li>
+<li>累加字节长度<ol start="3">
+<li>根据状态吗拼接响应头协议</li>
+<li>根据状态码统一输出</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<p>4.封装请求信息<br>  request</p>
+<blockquote>
+<ol>
+<li>分解字符串获取method url和请求参数</li>
+<li>通过map封装参数 两个方法<ol start="3">
+<li>考虑一个参数多个值 和中文</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<p>5.引入servlet</p>
+<blockquote>
+<ol>
+<li>将业务代码解耦到具体业务类中 （具体的servlet）</li>
+</ol>
+</blockquote>
+<p>6.整合xml配置文件</p>
+<blockquote>
+<ol>
+<li>根据配置文件动态获取类名</li>
+<li>反射获取具体servlet类进行业务处理</li>
+<li>代码不变更，功能增加</li>
+</ol>
+</blockquote>
+<p>7.dispatch</p>
+<blockquote>
+<ol>
+<li>加入多线程</li>
+<li>可以同时响应多个请求</li>
+<li>短链接</li>
+</ol>
+</blockquote>
+<ol start="8">
+<li>404\index处理<blockquote>
+<ol>
+<li>读取错误、首页内容即可</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+
         </div>
       </div>
     </div>
