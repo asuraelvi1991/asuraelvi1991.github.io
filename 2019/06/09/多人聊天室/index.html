@@ -8,7 +8,7 @@
   <meta name="description" content>
   <meta name="author" content="Haita">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="电影票多线程">
+  <meta property="og:title" content="多人聊天室">
   <meta property="og:description" content="寻找之旅">
   <meta property="og:site_name" content="海獭之家">
   <meta property="og:type" content="article">
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">电影票多线程</p>
+          <p class="title">多人聊天室</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -99,29 +99,33 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2019-06-04</span>
+            <span class="date">2019-06-09</span>
             <span class="time">15:31:05</span>
           </span>
           
         </div>
         <!-- Tags -->
         
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/study/">#study</a>
+
+
+          </div>
+        
         <!-- Post Main Content -->
         <div class="post-content">
-          <h1 id="电影票订票系统"><a href="#电影票订票系统" class="headerlink" title="电影票订票系统"></a>电影票订票系统</h1><p>目标：<br>高并发场景下，100个用户每人抢2张票，完成以下任务</p>
+          <p>#多人聊天室</p>
 <ol>
-<li>电影院一个放映厅，单场电影，卖100个座位的票。（基础，输出没买到的用户，以及买到者的座位号，优先连坐）</li>
-<li>电影院有10个放映厅厅，一天10场电影，每个场卖100张，总共10000张票。（升级）</li>
-<li>（高并发场景下1000个人，每人买20张）</li>
+<li>用户注册功能</li>
+<li>用户登陆</li>
+<li>登陆到统一界面，群聊</li>
+<li>统一界面，@特定的人，只有特定人可以接收消息</li>
 </ol>
-<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><ol>
-<li>用布尔二维数组模拟 座位</li>
-<li>同步锁定seats二维数组</li>
-<li>seat占用时候有延迟会导致多占用，即多卖；service层延迟会导致一个线程只能购买一张。</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin git@github.com:asuraelvi1991/JavaLearning.git</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;tickets&quot;</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
+<p>用户连接到sever，是一个个socket，多用户连接则需要维护一个socket容器。<br>List<socket>,</socket></p>
+<p>####问题1，如何区别不同用户建立的链接</p>
+<p>####问题2，实时交流，因此群聊的输入流和输出流需要分开多线程去转发，不阻塞流程。</p>
 
         </div>
       </div>
