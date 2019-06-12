@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="Haita">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="链表反转+两两反转">
+  <meta property="og:description" content="寻找之旅">
+  <meta property="og:site_name" content="海獭之家">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://yoursite.com">
+  
+    <link rel="alternate" href="/atom.xml" title="海獭之家" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>海獭之家</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">链表反转+两两反转</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Haita</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-06-13</span>
+            <span class="time">02:09:48</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>#链表反转<br>方法一：迭代<br>假设存在链表 1 → 2 → 3 → Ø，我们想要把它改成 Ø ← 1 ← 2 ← 3。</p>
+<p>在遍历列表时，将当前节点的 next 指针改为指向前一个元素。由于节点没有引用其上一个节点，因此必须事先存储其前一个元素。在更改引用之前，还需要另一个指针来存储下一个节点。不要忘记在最后返回新的头引用！</p>
+<p>Java<br>public ListNode reverseList(ListNode head) {<br>    ListNode prev = null;<br>    ListNode curr = head;<br>    while (curr != null) {<br>        ListNode nextTemp = curr.next;<br>        curr.next = prev;<br>        prev = curr;<br>        curr = nextTemp;<br>    }<br>    return prev;<br>}
+复杂度分析</p>
+<p>时间复杂度：O(n)O(n)，假设 nn 是列表的长度，时间复杂度是 O(n)O(n)。<br>空间复杂度：O(1)O(1)。<br>方法二：递归<br>递归版本稍微复杂一些，其关键在于反向工作。假设列表的其余部分已经被反转，现在我该如何反转它前面的部分？</p>
+<p>假设列表为：</p>
+<p>n_{1}\rightarrow … \rightarrow n_{k-1} \rightarrow n_{k} \rightarrow n_{k+1} \rightarrow … \rightarrow n_{m} \rightarrow \varnothing<br>n 
+1<br>​    
+ →…→n<br>k−1<br>​    
+ →n<br>k
+​<br> →n<br>k+1<br>​    
+ →…→n<br>m
+​<br> →∅</p>
+<p>若从节点 n_{k+1}n<br>k+1<br>​    
+  到 n_{m}n<br>m
+​<br>  已经被反转，而我们正处于 n_{k}n<br>k
+​<br> 。</p>
+<p>n_{1}\rightarrow … \rightarrow n_{k-1} \rightarrow n_{k} \rightarrow n_{k+1} \leftarrow … \leftarrow n_{m}<br>n 
+1<br>​    
+ →…→n<br>k−1<br>​    
+ →n<br>k
+​<br> →n<br>k+1<br>​    
+ ←…←n<br>m
+​    </p>
+<p>我们希望 n_{k+1}n<br>k+1<br>​    
+  的下一个节点指向 n_{k}n<br>k
+​<br> 。</p>
+<p>所以，n_{k}n<br>k
+​<br> .next.next = n_{k}n<br>k
+​<br> 。</p>
+<p>要小心的是 n_{1}n<br>1
+​<br>  的下一个必须指向 Ø 。如果你忽略了这一点，你的链表中可能会产生循环。如果使用大小为 2 的链表测试代码，则可能会捕获此错误。</p>
+<p>Java<br>public ListNode reverseList(ListNode head) {<br>    if (head == null || head.next == null) return head;<br>    ListNode p = reverseList(head.next);<br>    head.next.next = head;<br>    head.next = null;<br>    return p;<br>}
+复杂度分析</p>
+<p>时间复杂度：O(n)O(n)，假设 nn 是列表的长度，那么时间复杂度为 O(n)O(n)。<br>空间复杂度：O(n)O(n)，由于使用递归，将会使用隐式栈空间。递归深度可能会达到 nn 层。</p>
+<p>作者：LeetCode<br>链接：<a href="https://leetcode-cn.com/problems/two-sum/solution/fan-zhuan-lian-biao-by-leetcode/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/two-sum/solution/fan-zhuan-lian-biao-by-leetcode/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p>#两两反转<br>代码<br>递归解法</p>
+<p>class Solution {<br>    public ListNode swapPairs(ListNode head) {<br>        if(head == null || head.next == null){<br>            return head;<br>        }<br>        ListNode next = head.next;<br>        head.next = swapPairs(next.next);<br>        next.next = head;<br>        return next;<br>    }<br>}
+非递归解法</p>
+<p>class Solution {<br>    public ListNode swapPairs(ListNode head) {<br>        ListNode pre = new ListNode(0);<br>        pre.next = head;<br>        ListNode temp = pre;<br>        while(temp.next != null &amp;&amp; temp.next.next != null) {<br>            ListNode start = temp.next;<br>            ListNode end = temp.next.next;<br>            temp.next = end;<br>            start.next = end.next;<br>            end.next = start;<br>            temp = start;<br>        }<br>        return pre.next;<br>    }<br>}</p>
+<p>作者：guanpengchn<br>链接：<a href="https://leetcode-cn.com/problems/two-sum/solution/hua-jie-suan-fa-24-liang-liang-jiao-huan-lian-biao/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/two-sum/solution/hua-jie-suan-fa-24-liang-liang-jiao-huan-lian-biao/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        </p><p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
