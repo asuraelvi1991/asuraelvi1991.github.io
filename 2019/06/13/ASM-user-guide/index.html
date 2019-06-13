@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="Haita">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="ASM  user guide">
+  <meta property="og:description" content="寻找之旅">
+  <meta property="og:site_name" content="海獭之家">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://yoursite.com">
+  
+    <link rel="alternate" href="/atom.xml" title="海獭之家" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>海獭之家</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">ASM  user guide</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Haita</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-06-13</span>
+            <span class="time">23:40:41</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>翻译工作 day1<br>1 .访问者模式</p>
+<ol start="2">
+<li><p>class</p>
+</li>
+<li><p>1.结构</p>
+</li>
+<li><p>1.1 前言<br>  编译class包含<br>  ①一部分描述类的修饰符、类名、父类、接口和注解<br>  ②一部分是类中声明每个属性。每个部分描述属性的修饰符、属性名、类型和注解<br>  ③一部分是类中声明的每个方法。每个部分描述方法的修饰符、方法名、返回值、参数类型和注解</p>
+<p>  源文件和编译class有不同之处<br>  ①编译class只描述一个类，但是源文件可以包含多个类。、<br>  例如描述一个类包含内部类会被编译成两个class，一个是主类，一个是内部类。<br>  但是主类文件包含指向内部类的，内部类的方法包含一个只想方法块的。<br>  ②编译class不包含注解，包含类、属性、方法和可以关联附加信息到这些元素的code attributes。<br>  因为java5引入了注解，可以用来做同样的事情，属性开始变得几乎没有作用。<br>  ③一个编译class不包含包和引入部分，因此类名必须全部提供。</p>
+</li>
+</ol>
+<p>2.1.2 内部名字<br>在许多情况下，类型被约束为（is constrained to ）类或接口类型。<br>例如一个类的父类，一个被类实现的接口，或者方法抛出的异常不能为基本类型或者数组类型，需要是类或接口类型。<br>这些类型在编译class中便是为“内部名称”（internal names）<br>一个类的内部名称是此类的完全限定名，其中“.”被替换为“/”<br>例如，String的内部名为 java/lang/String.</p>
+<p>2.1.3 类型描述符<br>基础类型的描述符是单个字符：<br>Z代表boolean，C代表char，B代表byte，S代表short,I代表int，F代表float，J代表long，D代表double<br>类的描述符是这个类的内部名，前面（preceded by）是L后面跟（ followed by)着分号；<br>例如，String的内部名为  java/lang/String.<br>最后数组的描述符是一个方括号跟着这个数组元素的类型的内部名。</p>
+<p>2.1.4 方法描述符<br>方法描述符是包含描述方法的参数类型和返回类型的单个方法描述符字符串。<br>方法描述符开始于左括号，跟着每个参数的描述符，然后跟着右括号，在后面是返回类型的描述符，或者返回空时表示为V。<br>方法描述不包含方法名和参数名称<br>void m(int i, float f) (IF)V<br>int m(Object o) (Ljava/lang/Object;)I<br>int[] m(int i, String s) (ILjava/lang/String;)[I<br>Object m(int[] i) ([I)Ljava/lang/Object;</p>
+<p>2.2 接口和成员们<br>用来生成和改变边一类的asm api是基于ClassCisitor抽象类的。在这个类中的每个方法都对应于类文件结构中同名的部分。<br>通过一个方法调用访问简单节，该方法调用的参数描述它们的内容，这将返回void。<br>任意长度和复杂度的部分被一个出事方法调用访问，返回辅助的visitor类。<br>这是一个visitAnnotation,visitField 和 visitMethod的案例，他们分别返回了一个AnnotationVisitor,FieldVisitor和 MethodVisitor</p>
+<p>public abstract class ClassVisitor {<br>public ClassVisitor(int api);<br>public ClassVisitor(int api, ClassVisitor cv);<br>public void visit(int version, int access, String name,<br>String signature, String superName, String[] interfaces);<br>public void visitSource(String source, String debug);<br>public void visitOuterClass(String owner, String name, String desc);<br>AnnotationVisitor visitAnnotation(String desc, boolean visible);<br>public void visitAttribute(Attribute attr);<br>public void visitInnerClass(String name, String outerName,<br>String innerName, int access);<br>public FieldVisitor visitField(int access, String name, String desc,<br>String signature, Object value);<br>public MethodVisitor visitMethod(int access, String name, String desc,<br>String signature, String[] exceptions);<br>void visitEnd();<br>}
+这些辅助类按照同一个规则被递归调用。例如，在classvistitor中，fieldVisitor抽象类的每一个方法对应同名的类文件子结构，<br>visitAnnotation返回一个AnnotationVistor的辅助类。辅助类的创建和使用将在下个章节讲解。</p>
+<p>classVisitor类必须按照下面的顺序被调用，<br>visit visitSource? visitOuterClass? ( visitAnnotation | visitAttribute )*
+( visitInnerClass | visitField | visitMethod )*
+visitEnd<br>这代表着visit必须被首先访问，后面跟着最多一个的vistSource、visitOuterClass，<br>后面跟着某些数量的visitAnnotation、visitAttribute调用、<br>后面跟着某些数量的visitField、visitField、visitMethod调用、<br>由visitEnd的方法调用结尾。</p>
+<p>ASM提供三个核心组件，它们基于ClassVisitor API去生成和改写类：<br>（The ClassReader class parses a compiled class given as a byte array,<br>and calls the corresponding visitXxx methods on the ClassVisitor<br>instance passed as argument to its accept method）<br>①ClassReader：解析一个字节数组的编译类，并调用对应的ClassVisitor中的visitxxx方法传递参数到reader的acc方法中。<br>他被看做事件生成器。<br>②ClassWriter是ClassVisitor抽象类的子类，他直接创建字节版本的编译class。<br>他生成一个包含编译class内容的字节数组输出流，他可以通过toByteArrya方法获取。<br>③ClassVisitor类将它接收到的所有方法调用委托给另一个类访问者实例。它可以看作是一个事件过滤器。</p>
+<p>2.2.2 解析类<br>ClassReader是唯一解析存在文件的组件。假设我们想要去打印一个类的内容，像javap工具一样的方式。<br>第一步是写一个Claasvisitor类的子类，打印它访问的类。</p>
+<p>public class ClassPrinter extends ClassVisitor {<br>public ClassPrinter() {<br>super(ASM4);<br>}
+public void visit(int version, int access, String name,<br>String signature, String superName, String[] interfaces) {<br>System.out.println(name + “ extends “ + superName + “ {“);<br>}
+public void visitSource(String source, String debug) {<br>}
+public void visitOuterClass(String owner, String name, String desc) {<br>}
+public AnnotationVisitor visitAnnotation(String desc,<br>boolean visible) {<br>return null;<br>}
+public void visitAttribute(Attribute attr) {<br>}
+public void visitInnerClass(String name, String outerName,<br>String innerName, int access) {<br>}
+public FieldVisitor visitField(int access, String name, String desc,<br>String signature, Object value) {<br>System.out.println(“ “ + desc + “ “ + name);<br>return null;<br>}
+public MethodVisitor visitMethod(int access, String name,<br>String desc, String signature, String[] exceptions) {<br>System.out.println(“ “ + name + desc);<br>return null;<br>}
+public void visitEnd() {<br>System.out.println(“}”);<br>}
+}<br>第二步是将ClassPrinter和ClassReader组合，classreader获取的内容可以被classprinter消费。<br>ClassPrinter cp = new ClassPrinter();<br>ClassReader cr = new ClassReader(“java.lang.Runnable”);<br>cr.accept(cp, 0);</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        </p><p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
