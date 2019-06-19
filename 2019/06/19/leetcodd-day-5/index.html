@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="Haita">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="leetcodd-day-5">
+  <meta property="og:description" content="寻找之旅">
+  <meta property="og:site_name" content="海獭之家">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://yoursite.com">
+  
+    <link rel="alternate" href="/atom.xml" title="海獭之家" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>海獭之家</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">leetcodd-day-5</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Haita</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-06-19</span>
+            <span class="time">00:29:14</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>#获取中位数<br>给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。</p>
+<p>请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。</p>
+<p>你可以假设 nums1 和 nums2 不会同时为空。</p>
+<p>示例 1:</p>
+<p>nums1 = [1, 3]<br>nums2 = [2]</p>
+<p>则中位数是 2.0<br>示例 2:</p>
+<p>nums1 = [1, 2]<br>nums2 = [3, 4]</p>
+<p>则中位数是 (2 + 3)/2 = 2.5</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays" target="_blank" rel="noopener">https://leetcode-cn.com/problems/median-of-two-sorted-arrays</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<ol>
+<li>两个数组从0开始往后递进，某一个数组遍历完成则退出</li>
+<li>比较两个数组的大小，将小的数组存下，并将小的位置往后移动</li>
+<li>期间如果到达两数组位置之和的二分之一，则返回结果（<br>如果是奇数返回当前位置，如果是偶数，返回当前位置和之前位置的和的二分之一）</li>
+<li>继续循环两个数组，直至当前位置到达两个数组的位置之和的二分之一，则返回结果<br>（如果是奇数返回当前位置，如果是偶数，返回当前位置和之前位置的和的二分之一）</li>
+</ol>
+<h1 id="数组反转"><a href="#数组反转" class="headerlink" title="数组反转"></a>数组反转</h1><p>给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。</p>
+<p>示例 1:</p>
+<p>输入: 123<br>输出: 321<br> 示例 2:</p>
+<p>输入: -123<br>输出: -321</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/reverse-integer" target="_blank" rel="noopener">https://leetcode-cn.com/problems/reverse-integer</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br>1。 要考虑数组越界的问题！！！<br>2。 其次是取余数会保留符号！！！</p>
+<p>##attantion<br>正式解题<br>1。初始化结果为0<br>2。循环直至整数为零<br>3。 取到余数<br>5。 该数字除以10<br>6。判断是否会越界<br>四种情况<br>目前的值大于 整数最大值除以十<br>目前的值等于 整数最大数除以十 同时 整数取余数大于 最大整数取余数<br>目前的值小雨 整数最小值除以十<br>目前的值等于 整数最小值除以十 同时 整数取的余数小雨 最小余数对十取余数<br>四种情况返回0；<br>7。结果乘以10，加上余数</p>
+<h1 id="旋转90度"><a href="#旋转90度" class="headerlink" title="旋转90度"></a>旋转90度</h1><p> 给定一个 n × n 的二维矩阵表示一个图像。</p>
+<p> 将图像顺时针旋转 90 度。</p>
+<p> 说明：</p>
+<p> 你必须在原地旋转图像，这意味着你需要直接修改输入的二维矩阵。请不要使用另一个矩阵来旋转图像。</p>
+<p> 来源：力扣（LeetCode）<br> 链接：<a href="https://leetcode-cn.com/problems/rotate-image" target="_blank" rel="noopener">https://leetcode-cn.com/problems/rotate-image</a><br> 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p> //首先上下行进行翻转<br> up、down两行</p>
+<ol>
+<li><p>up&lt;down</p>
+</li>
+<li><p>交换</p>
+</li>
+<li><p>up++;down–</p>
+<p>//对角线翻转</p>
+</li>
+<li><p>i—–0——-n</p>
+</li>
+<li><p>j—–i+1—–n</p>
+</li>
+<li><p>[i][j]—-&gt;[j][i]</p>
+</li>
+</ol>
+<p>#pow（x，n）求幂</p>
+<p>##注意事项</p>
+<ol>
+<li>边界情况 0，1，-1</li>
+<li>之后考虑间复杂度</li>
+<li>int值有可能越界，需要用long取获取</li>
+</ol>
+<p>步骤</p>
+<ol>
+<li><p>判断边界条件</p>
+</li>
+<li><p>通用化，如果小，就将x=1/x，n=-n，long—&gt;n<br> （此处要注意越界，最大的负数比整数大，会越界）</p>
+</li>
+<li><p>将n当作二进制处理<br>如果余一，结果就加x<br>x *=x；</p>
+</li>
+<li><p>返回结果</p>
+</li>
+</ol>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        </p><p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
