@@ -8,10 +8,10 @@
   <meta name="description" content>
   <meta name="author" content="Haita">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="多人聊天室">
+  <meta property="og:title" content="海獭之家">
   <meta property="og:description" content="寻找之旅">
   <meta property="og:site_name" content="海獭之家">
-  <meta property="og:type" content="article">
+  <meta property="og:type" content="website">
   <meta property="og:image" content="http://yoursite.com">
   
     <link rel="alternate" href="/atom.xml" title="海獭之家" type="application/atom+xml">
@@ -35,7 +35,8 @@
 </head>
 
   <body>
-    <!-- Page Header -->
+    <!-- Archive Header -->
+<!-- Page Header -->
 
 
 <header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
@@ -43,7 +44,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">多人聊天室</p>
+          <p class="title">Blog Archives</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -88,57 +89,34 @@
   </div>
 </header>
 
-<article>
-  <div class="container typo">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="post-info text-muted">
-          
-            <!-- Author -->
-            <span class="author info">By Haita</span>
-          
-          <!-- Date -->
-          <span class="date-time info">On
-            <span class="date">2019-06-09</span>
-            <span class="time">18:43:09</span>
-          </span>
-          
-        </div>
-        <!-- Tags -->
-        
-          <div class="post-tags text-muted">
-            Tags: 
+<!-- Archive List -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      
+        <div class="archive-item">
+  <a href="/2019/06/10/2019-06-10-leetcode-三数之和/" class="post-title">
+    2019-06-10 Leetcode 三数之和
+  </a>
+  <div class="date text-muted">Posted on 2019-06-10 00:55:42</div>
+</div>
 
-<a class="tag" href="/tags/study/">#study</a>
+      
 
-
-          </div>
-        
-        <!-- Post Main Content -->
-        <div class="post-content">
-          <h1 id="多人聊天室"><a href="#多人聊天室" class="headerlink" title="多人聊天室"></a>多人聊天室</h1><ol>
-<li>用户注册功能</li>
-<li>用户登陆</li>
-<li>登陆到统一界面，群聊</li>
-<li>统一界面，@特定的人，只有特定人可以接收消息</li>
-</ol>
-<p>用户连接到sever，是一个个socket，多用户连接则需要维护一个socket容器。<br>List<socket>,</socket></p>
-<h4 id="问题1，如何区别不同用户建立的链接"><a href="#问题1，如何区别不同用户建立的链接" class="headerlink" title="问题1，如何区别不同用户建立的链接"></a>问题1，如何区别不同用户建立的链接</h4><ol>
-<li>创建channel，list用线程安全的，每次新建链接就添加到list中</li>
-<li>channel对象中存有名字，在初始化channel时就传入</li>
-<li>特殊的文字格式给@xxx：内容，私聊</li>
-<li>release在各种异常中释放，将所有内容释放，并把socket从list中移除</li>
-</ol>
-<h4 id="问题2，实时交流，因此群聊的输入流和输出流需要分开多线程去转发，不阻塞流程。"><a href="#问题2，实时交流，因此群聊的输入流和输出流需要分开多线程去转发，不阻塞流程。" class="headerlink" title="问题2，实时交流，因此群聊的输入流和输出流需要分开多线程去转发，不阻塞流程。"></a>问题2，实时交流，因此群聊的输入流和输出流需要分开多线程去转发，不阻塞流程。</h4><ol>
-<li>实现runnable接口，起线程去处理请求</li>
-<li>client端将接受、和请求分开，因为可以同时接受并发送消息</li>
-</ol>
-
-        </div>
-      </div>
     </div>
   </div>
-</article>
+</div>
+<!-- Pagination -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-md-10 col-md-offset-1">
+      <ul class="pagination">
+          
+          
+      </ul>
+    </div>
+  </div>
+</div>
 
 
 
