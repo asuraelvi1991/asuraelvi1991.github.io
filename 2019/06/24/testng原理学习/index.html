@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="Haita">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Testng原理学习">
+  <meta property="og:description" content="寻找之旅">
+  <meta property="og:site_name" content="海獭之家">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://yoursite.com">
+  
+    <link rel="alternate" href="/atom.xml" title="海獭之家" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>海獭之家</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Testng原理学习</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/asuraelvi1991">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:asuraelvi@163.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Haita</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-06-24</span>
+            <span class="time">00:52:23</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/testng/">testng</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/deep/">#deep</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h1 id="注解-注意事项"><a href="#注解-注意事项" class="headerlink" title="注解 注意事项"></a>注解 注意事项</h1><ol>
+<li>Before、After如果有继承关系，则是Before从父类运行结束到子类运行，而After正好相反</li>
+<li>Before、After有一个属性alwaysRun，无论组别、test成功失败均会运行，这个属性可以很好的解决测试数据脏数据处理以及测试环境还原的工作。</li>
+<li>@DataProvider有两个属性<br>一个name属性，如果缺失，则是方法名作为name<br>另一个是parallel，用这个dataprovider可以并行执行（明天抽空测试下）</li>
+<li>@Factory 将生成用于testng的一些测试类的方法设置成工厂方法，返回值必须是Object[]（一直没用过！）</li>
+<li>@Listener 对执行的测试进行监听 拥有属性value可以添加org.testng.ITestNGListener的子类</li>
+<li>@Test 常见属性 <ul>
+<li>AlwaysRun 无论准备数据或者依赖的方法是否成功均运行</li>
+<li>expectedExceptions 期待发生异常，如果未产生异常则会判失败</li>
+<li>timeOut 触发的超时时间，如果每个case都设置这个时间，对dailyrun的稳定性会有提升，超时即判错</li>
+<li>priority 测试用例的优先级，值越小优先级越高，越先执行（非常有用）</li>
+<li>singleThreaded 单线程运行测试class，不过如果设置在方法上，会被忽略</li>
+<li>invocationCount、threadPoolSize、invocationTimeOut 多次调用的相关属性，次数、线程池大小、多次调用超时时间</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h1 id="testng-xml"><a href="#testng-xml" class="headerlink" title="testng.xml"></a>testng.xml</h1><p>触发testn共有三种方法</p>
+<ul>
+<li>命令行形式</li>
+<li>with ant</li>
+<li>通过testng.xml文件</li>
+</ul>
+<p>example</p>
+<pre><code>&lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot; &gt;
+&lt;suite name=&quot;Suite1&quot; verbose=&quot;1&quot; &gt;
+  &lt;test name=&quot;Nopackage&quot; &gt;
+    &lt;classes&gt;
+       &lt;class name=&quot;NoPackageTest&quot; /&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt;
+
+  &lt;test name=&quot;Regression1&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;test.sample.ParameterSample&quot;/&gt;
+      &lt;class name=&quot;test.sample.ParameterTest&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt;
+&lt;/suite&gt;
+
+--------------
+
+# xml细节
+A &lt;b&gt;suite&lt;/b&gt; is made of &lt;b&gt;tests&lt;/b&gt; and &lt;b&gt;parameters&lt;/b&gt;.
+A &lt;b&gt;test&lt;/b&gt; is made of three parts:                        
+&lt;ul&gt;
+&lt;li&gt; &lt;b&gt;parameters&lt;/b&gt;, which override the suite parameters     
+&lt;li&gt; &lt;b&gt;groups&lt;/b&gt;, made of two parts                           
+&lt;li&gt; &lt;b&gt;classes&lt;/b&gt;, defining which classes are going to be part
+  of this test run                                    
+&lt;/ul&gt;
+In turn, &lt;b&gt;groups&lt;/b&gt; are made of two parts:                
+&lt;ul&gt;
+&lt;li&gt; Definitions, which allow you to group groups into   
+  bigger groups                                       
+&lt;li&gt; Runs, which defines the groups that the methods     
+  must belong to in order to be run during this test  
+&lt;/ul&gt;</code></pre><ol>
+<li>testng有一个约束文件 testng-1.0.dtd</li>
+<li>可以通过类引入测试用例，也可以通过包引入包下所有有testng注解的测试用例</li>
+<li>如果想增加或者删除某些方法或者组，可以通过【groups、methods】-【exclude、include】来进行操作</li>
+<li>可以在xml中定义新的测试组，并且定制属性外的其他细节，比如是否并行运行测试案例，动用多少线程，师傅运行JUnit测试<br>普通情况下，testng会按照xml文件中的顺序进行运行，如果想让测试案例和方法在一个随机的顺序，需要把preseve-order属性置为fasle</li>
+</ol>
+<p>#运行test</p>
+<ol>
+<li><p>TestNG can be invoked in different ways:</p>
+<ul>
+<li>Command line</li>
+<li>ant</li>
+<li>Eclipse</li>
+<li>IntelliJ’s IDEA</li>
+</ul>
+</li>
+<li><p>classpath中包含testng可以用以下命令运行测试案例</p>
+<ul>
+<li>java org.testng.TestNG testng1.xml [testng2.xml testng3.xml …]</li>
+</ul>
+</li>
+<li><p>Parameter这个参数可以在xml中设置</p>
+<ul>
+<li>@Parameters({ “first-name” }) 放置@Test之上</li>
+<li><parameter name="first-name" value="Cedric">放在<suits>内</suits></parameter></li>
+<li>可以和@Optional进行搭配，如果未传参数，则使用默认值</li>
+</ul>
+</li>
+<li><p>如果想在另一个class中生成dataprovider，就需要将方法变为静态方法，并在使用data时声明该类</p>
+<ul>
+<li>@Test(dataProvider = “create”, dataProviderClass = StaticProvider.class)</li>
+</ul>
+</li>
+<li><p>相互依赖关系 </p>
+<ul>
+<li>强依赖 依赖的案例必须成功，否则skip跳过。  <ul>
+<li>dependsOnGroups</li>
+<li>dependsOnMethods</li>
+</ul>
+</li>
+<li>弱依赖 无论成功失败都会执行，只是为了顺序。通过alwaysRun来实现</li>
+<li>解决乱序问题 <suite name="Factory" group-by-instances="true"> or  <test name="Factory" group-by-instances="true"></test></suite></li>
+<li>xml中的依赖关系引入 <group name="c" depends-on="a  b"></group></li>
+</ul>
+</li>
+<li><p>运行多线程跑case</p>
+<ul>
+<li>java org.testng.TestNG -suitethreadpoolsize 3 testng1.xml testng2.xml testng3.xml</li>
+<li>@Test(threadPoolSize = 3, invocationCount = 10,  timeOut = 10000) 表示用三个线程调用case10次，设定超时时间为10s</li>
+</ul>
+</li>
+<li><p>group的用法</p>
+<ul>
+<li>这里将3个方法设为功能测试，两个为冒烟测试，这样可以区分出case该运行的时间<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Test1 &#123;</span><br><span class="line">   @Test(groups = &#123; &quot;functest&quot;, &quot;checkintest&quot; &#125;)</span><br><span class="line">   public void testMethod1() &#123;</span><br><span class="line">   &#125;</span><br><span class="line">   @Test(groups = &#123;&quot;functest&quot;, &quot;checkintest&quot;&#125; )</span><br><span class="line">   public void testMethod2() &#123;</span><br><span class="line">   &#125;</span><br><span class="line">   @Test(groups = &#123; &quot;functest&quot; &#125;)</span><br><span class="line">   public void testMethod3() &#123;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;test name=&quot;Test1&quot;&gt;</span><br><span class="line">  &lt;groups&gt;</span><br><span class="line">    &lt;run&gt;</span><br><span class="line">      &lt;include name=&quot;functest&quot;/&gt;</span><br><span class="line">    &lt;/run&gt;</span><br><span class="line">  &lt;/groups&gt;</span><br><span class="line">  &lt;classes&gt;</span><br><span class="line">    &lt;class name=&quot;example1.Test1&quot;/&gt;</span><br><span class="line">  &lt;/classes&gt;</span><br><span class="line">&lt;/test&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* 测试组之间的组合</span><br><span class="line">**/</span><br><span class="line">&lt;test name=&quot;Regression1&quot;&gt;</span><br><span class="line">  &lt;groups&gt;</span><br><span class="line">    &lt;define name=&quot;functest&quot;&gt;</span><br><span class="line">      &lt;include name=&quot;windows&quot;/&gt;</span><br><span class="line">      &lt;include name=&quot;linux&quot;/&gt;</span><br><span class="line">    &lt;/define&gt;</span><br><span class="line">  </span><br><span class="line">    &lt;define name=&quot;all&quot;&gt;</span><br><span class="line">      &lt;include name=&quot;functest&quot;/&gt;</span><br><span class="line">      &lt;include name=&quot;checkintest&quot;/&gt;</span><br><span class="line">    &lt;/define&gt;</span><br><span class="line">  </span><br><span class="line">    &lt;run&gt;</span><br><span class="line">      &lt;include name=&quot;all&quot;/&gt;</span><br><span class="line">      &lt;exclude name=&quot;broken&quot;/&gt;</span><br><span class="line">    &lt;/run&gt;</span><br><span class="line">  &lt;/groups&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;classes&gt;</span><br><span class="line">    &lt;class name=&quot;test.sample.Test1&quot;/&gt;</span><br><span class="line">  &lt;/classes&gt;</span><br><span class="line">&lt;/test&gt;</span><br></pre></td></tr></table></figure>
+
+<p>下面是 5.11，进程一半<br>希望明天可以吧document看完，周三把testng的api和原理梳理一下，加油！</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        </p><p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
