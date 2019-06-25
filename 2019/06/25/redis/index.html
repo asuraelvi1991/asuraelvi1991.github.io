@@ -8,7 +8,7 @@
   <meta name="description" content>
   <meta name="author" content="Haita">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="准备">
+  <meta property="og:title" content="Redis">
   <meta property="og:description" content="寻找之旅">
   <meta property="og:site_name" content="海獭之家">
   <meta property="og:type" content="article">
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">准备</p>
+          <p class="title">Redis</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -99,14 +99,14 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2019-06-21</span>
+            <span class="date">2019-06-25</span>
             <span class="time">01:50:45</span>
           </span>
           
           <!--  Categories  -->
             <span class="categories info">Under 
 
-<a href="/categories/生活/">生活</a>
+<a href="/categories/spring/">spring</a>
 </span>
           
         </div>
@@ -115,14 +115,50 @@
           <div class="post-tags text-muted">
             Tags: 
 
-<a class="tag" href="/tags/努力/">#努力</a>
+<a class="tag" href="/tags/redis/">#redis</a>
 
 
           </div>
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h1 id="java-容器"><a href="#java-容器" class="headerlink" title="java 容器"></a>java 容器</h1><h1 id="spring的知识"><a href="#spring的知识" class="headerlink" title="spring的知识"></a>spring的知识</h1><h1 id="测试架构"><a href="#测试架构" class="headerlink" title="测试架构"></a>测试架构</h1><h1 id="spring里面-Test的原理"><a href="#spring里面-Test的原理" class="headerlink" title="spring里面@Test的原理"></a>spring里面@Test的原理</h1><h1 id="mq、cat、lschedular、dubbo的原理"><a href="#mq、cat、lschedular、dubbo的原理" class="headerlink" title="mq、cat、lschedular、dubbo的原理"></a>mq、cat、lschedular、dubbo的原理</h1><h1 id="自己做的小工具"><a href="#自己做的小工具" class="headerlink" title="自己做的小工具"></a>自己做的小工具</h1><h1 id="最有意义的bug"><a href="#最有意义的bug" class="headerlink" title="最有意义的bug"></a>最有意义的bug</h1><h1 id="最满意的测试"><a href="#最满意的测试" class="headerlink" title="最满意的测试"></a>最满意的测试</h1><h1 id="负责的项目"><a href="#负责的项目" class="headerlink" title="负责的项目"></a>负责的项目</h1><h1 id="常用的包"><a href="#常用的包" class="headerlink" title="常用的包"></a>常用的包</h1><p>测试相关的包<br>testng<br>poi 操作excel、word等文件的包</p>
+          <h1 id="REDIS"><a href="#REDIS" class="headerlink" title="REDIS"></a>REDIS</h1><p><a href="https://hub.docker.com/_/redis" target="_blank" rel="noopener">https://hub.docker.com/_/redis</a></p>
+<ol>
+<li><p>下载redis docker pull redis</p>
+</li>
+<li><p>运行redis docker run –name redis -d -p 6379:6379 redis</p>
+</li>
+<li><p>查询所有docker docker ps -a</p>
+</li>
+<li><p>如果已经运行了redis，可以直接docker start redis</p>
+</li>
+<li><p>包 jedis</p>
+</li>
+<li><p>@Bean jedisPool(host), jedisPool.getResource()–&gt;jedis,操作：jedis.hset\jedis.hget</p>
+</li>
+<li><p>redis哨兵模式 jedisSentinelsPool</p>
+</li>
+<li><p>redis集群模式 jediscluster数据分片</p>
+</li>
+<li><p>spring 缓存抽象</p>
+<ul>
+<li>为java方法增加缓存缓存执行结果</li>
+<li>支持多种类型</li>
+<li>接口 Cache CacheManager</li>
+</ul>
+</li>
+<li><p>使用缓存的不同场景</p>
+<ul>
+<li>长久时间不会变，可以有时延，jvm内部缓存</li>
+<li>具备一定一致性 ，分布式缓存 redis</li>
+<li>不使用缓存，写一次读一次，不需要使用缓存</li>
+</ul>
+</li>
+<li><p>引入redis的包 starter-data-redis\starter-cache\apach.commons-pool2</p>
+</li>
+<li><p>redis template</p>
+</li>
+</ol>
 
         </div>
       </div>
