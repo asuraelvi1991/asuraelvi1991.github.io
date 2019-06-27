@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="Haita">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Git+jenkins">
+  <meta property="og:description" content="寻找之旅">
+  <meta property="og:site_name" content="海獭之家">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://yoursite.com">
+  
+    <link rel="alternate" href="/atom.xml" title="海獭之家" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>海獭之家</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Git+jenkins</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/asuraelvi1991">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:asuraelvi@163.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Haita</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-06-27</span>
+            <span class="time">23:38:26</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>目标</p>
+<ul>
+<li>搭建git</li>
+<li>搭建jenkins</li>
+<li>jenkins CI/CD</li>
+</ul>
+<h1 id="git"><a href="#git" class="headerlink" title="git"></a>git</h1><ol>
+<li><p>docker git仓库构建</p>
+</li>
+<li><p>docker pull gitlab/gitlab-ce</p>
+</li>
+<li><p><a href="https://docs.gitlab.com/omnibus/docker/" target="_blank" rel="noopener">dockeer user guide</a></p>
+</li>
+<li><p>sudo docker exec -it gitlab /bin/bash</p>
+</li>
+<li><p>docker rm imageName</p>
+</li>
+<li><p><a href="https://docs.gitlab.com/ee/api/README.html" target="_blank" rel="noopener">gitlub api</a></p>
+</li>
+<li><p>创建一个github的token，可以设置时间和权限 </p>
+<ul>
+<li>vVe3xSsdKiNuKxm6tvWX</li>
+<li>FFQv411Pbz3fxxDzxXtr</li>
+</ul>
+</li>
+<li><p>调用gitlab api </p>
+<ul>
+<li>首先到gitlab 用户管理 access token中申请权限 调用api进行查看</li>
+<li>curl <a href="http://localhost/api/v4/projects?private_token=vVe3xSsdKiNuKxm6tvWX" target="_blank" rel="noopener">http://localhost/api/v4/projects?private_token=vVe3xSsdKiNuKxm6tvWX</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run --detach \  </span><br><span class="line">  --hostname gitlab.example.com \</span><br><span class="line">  --publish 443:443 --publish 80:80 --publish 22:22 \</span><br><span class="line">  --name gitlab \</span><br><span class="line">  --restart always \</span><br><span class="line">  --volume /srv/gitlab/config:/etc/gitlab \</span><br><span class="line">  --volume /srv/gitlab/logs:/var/log/gitlab \</span><br><span class="line">  --volume /srv/gitlab/data:/var/opt/gitlab \</span><br><span class="line">  gitlab/gitlab-ce:latest</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<p>这个会下载并开启一个gitlab ce并且将端口暴露给ssh、http、https。所有gitlab数据将被收集到/srv/gitlab自目录下。当系统重启时，这个容器会自动重启</p>
+<h1 id="jenkins"><a href="#jenkins" class="headerlink" title="jenkins"></a>jenkins</h1><ol>
+<li>docker pull jenkins</li>
+<li>docker run -p 80:8080 -p 50000:50000 jenkins</li>
+<li>docker exec -it jenkins /bin/bash</li>
+<li>获取密码 cat /var/jenkins_home/secrets/initialAdminPassword </li>
+<li>登陆jenkins</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 80:8080 -p 50000:50000 -v jenkins:/var/jenkins_home -v /etc/localtime:/etc/localtime --name jenkins docker.io/jenkins/jenkins</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">这里逐条解释下各参数的意义。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-d 后台运行镜像</span><br><span class="line"></span><br><span class="line">-p 80:8080  将镜像的8080端口映射到服务器的80端口</span><br><span class="line"></span><br><span class="line">-p 50000:50000  将镜像的50000端口映射到服务器的50000端口</span><br><span class="line"></span><br><span class="line">-v jenkins:/var/jenkins_home  /var/jenkins_home目录为jenkins工作目录，我们将硬盘上的一个目录挂载到这个位置，方便后续更新镜像后继续使用原来的工作目录。</span><br><span class="line"></span><br><span class="line">-v /etc/localtime:/etc/localtime  让容器使用和服务器同样的时间设置。</span><br><span class="line"></span><br><span class="line">--name jenkins 给容器起一个别名</span><br><span class="line"></span><br><span class="line">作者：低调的微胖</span><br><span class="line">链接：https://www.jianshu.com/p/0391e225e4a6</span><br><span class="line">来源：简书</span><br><span class="line">简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://linux.cn/article-9926-1.html" target="_blank" rel="noopener">内容参考</a></p>
+<ol start="0">
+<li>持续集成之前<ul>
+<li>线前检查 pre-flightchecks</li>
+<li>测试构建</li>
+<li>代码审查</li>
+<li><a href="https://www.gerritcodereview.com/" target="_blank" rel="noopener">gerrit</a></li>
+<li>单元测试 <a href="https://junit.org/junit5/" target="_blank" rel="noopener">JUnit</a></li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p>持续集成 ci  </p>
+<ul>
+<li>自动化监测一个或多个源代码仓库是否有变更</li>
+<li>轮询、定期、推送（推送一个hook像监测系统发送通知，webhook）</li>
+</ul>
+</li>
+<li><p>持续测试 ct</p>
+<pre><code>+ 单元测试
++ 集成测试
++ 功能测试
++ 验收测试
++ 验证代码质量可以在正在运行的发布中使用
++ 快速发现问题并提醒开发团队
++ 代码覆盖率 [jacoco][5]
++ 监测代码行数、复杂度以及代码结构对比 [SonarQube][6]</code></pre></li>
+<li><p>持续交付 cd 包含</p>
+<ul>
+<li>持续集成 （自动检测源代码变更、执行构建过程、运行单元测试验证变更）</li>
+<li>持续测试（对代码进行各种测试以保障代码质量）</li>
+<li>持续部署（通过管道发布版本自动提供给用户）</li>
+<li><a href="https://jfrog.com/artifactory/" target="_blank" rel="noopener">artifactory</a> 工件仓库，存储跟踪，提供检索方法</li>
+</ul>
+</li>
+<li><p>持续部署 cd</p>
+<ul>
+<li>蓝绿测试部署</li>
+<li>金丝雀测试部署</li>
+<li>功能开关    </li>
+</ul>
+</li>
+<li><p>持续值得是随时运行</p>
+<ul>
+<li>在可重复、可靠的过程中为用户提供高质量的软件更新</li>
+<li>自动化构建、测试、分析、版本控制或在某些情况下的部署</li>
+<li>快速处理变更，监视创建发布的不同任务、作业</li>
+</ul>
+</li>
+<li><p>dockerfile神奇的东西！！！基于镜像做一些自己的配置然后打包，运行值得学习</p>
+<ul>
+<li><a href="https://docs.docker.com/engine/reference/builder/" target="_blank" rel="noopener">dockerfile官方地址</a></li>
+<li><a href="https://blog.csdn.net/qq_33256688/article/details/80319673" target="_blank" rel="noopener">非常好的dockerfile</a></li>
+</ul>
+</li>
+</ol>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        </p><p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
