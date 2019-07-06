@@ -8,7 +8,7 @@
   <meta name="description" content>
   <meta name="author" content="Haita">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="电影票多线程">
+  <meta property="og:title" content="Jmeter">
   <meta property="og:description" content="寻找之旅">
   <meta property="og:site_name" content="海獭之家">
   <meta property="og:type" content="article">
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">电影票多线程</p>
+          <p class="title">Jmeter</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -99,14 +99,14 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2019-06-04</span>
-            <span class="time">17:45:39</span>
+            <span class="date">2019-07-06</span>
+            <span class="time">17:45:40</span>
           </span>
           
           <!--  Categories  -->
             <span class="categories info">Under 
 
-<a href="/categories/java基础/">java基础</a>
+<a href="/categories/性能测试/">性能测试</a>
 </span>
           
         </div>
@@ -115,26 +115,62 @@
           <div class="post-tags text-muted">
             Tags: 
 
-<a class="tag" href="/tags/编程提升/">#编程提升</a>
+<a class="tag" href="/tags/jmeter/">#jmeter</a>
 
 
           </div>
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h1 id="电影票订票系统"><a href="#电影票订票系统" class="headerlink" title="电影票订票系统"></a>电影票订票系统</h1><p>目标：<br>高并发场景下，100个用户每人抢2张票，完成以下任务</p>
+          <p>JMH性能测试，专门用于代码微基准测试的工具套件<br>今晚学习</p>
+<p>要求性能测试，一直用java写接口调用，试用下jmeter，访问启动在docker中的引用</p>
 <ol>
-<li>电影院一个放映厅，单场电影，卖100个座位的票。（基础，输出没买到的用户，以及买到者的座位号，优先连坐）</li>
-<li>电影院有10个放映厅厅，一天10场电影，每个场卖100张，总共10000张票。（升级）</li>
-<li>（高并发场景下1000个人，每人买20张）</li>
+<li>json path</li>
+<li>function helper if判断器件使用</li>
 </ol>
-<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><ol>
-<li>用布尔二维数组模拟 座位</li>
-<li>同步锁定seats二维数组</li>
-<li>seat占用时候有延迟会导致多占用，即多卖；service层延迟会导致一个线程只能购买一张。</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin git@github.com:asuraelvi1991/JavaLearning.git</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;tickets&quot;</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-
+<h1 id="jmeter步骤"><a href="#jmeter步骤" class="headerlink" title="jmeter步骤"></a>jmeter步骤</h1><ol>
+<li>用户定义变量，定义计划中进场使用的变量信息 <ul>
+<li>请求服务器、端口、路径</li>
+<li>避免测试环境变更涉及的多处修改</li>
+<li>清楚测试数据规划</li>
+</ul>
 </li>
+<li>mysql的连接配置<ul>
+<li>配置数据库的链接</li>
+<li>返回检查需要和数据库字段进行匹配</li>
+</ul>
+</li>
+<li>http cookie管理器、header管理器等等</li>
+<li>接口测试<ul>
+<li>用简单控制器进行分类，业务相关接口放入一个控制器下作为分类，便于测试计划的管理和维护</li>
+<li>控制器下定义一个用户变量，只能此控制器下使用</li>
+<li>测试之间有依赖，需要if控制器</li>
+<li>返回报文的校验和字段引用<ul>
+<li>预期返回码为000，定义json path Asserion <a href="http">json path</a></li>
+<li>获取json报文存入变量，json path extractor，获取变量存放到变量中 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="jenkins集成jmeter-基于maven"><a href="#jenkins集成jmeter-基于maven" class="headerlink" title="jenkins集成jmeter 基于maven"></a>jenkins集成jmeter 基于maven</h1><ol>
+<li>使用maven的jmeter-maven-plugin插件吧jmter集成到测试项目，使用jenkins的performance plugin集成jmeter测试用例</li>
+<li>插件启动时会自动扫描${project.base.directory}/src/test/jmeter目录下的配置文件，并执行jMeterTestFile元素下配置的测试脚本</li>
+<li>在${project.base.directory}/target/jmeter/result目录下生成测试结果，可以在该目录下查看执行日志和测试结果文件</li>
+<li>jenkins配置，需要配置global tool configuration，配置maven configuration和maven安装项</li>
+<li>邮件配置、jenkins构建后选择源文件地址、还有邮件通知等内容</li>
+</ol>
+<h1 id="java-sample接口测试开发"><a href="#java-sample接口测试开发" class="headerlink" title="java sample接口测试开发"></a>java sample接口测试开发</h1><ol>
+<li>新建java项目，导入jmeter lib下的相关jar包</li>
+<li>新建测试类，集成abstractjavaSampleClient，可以查看该类机制，和Junit的使用类似</li>
+<li>JavaSampleContext在getDefaultParameters方法中实现界面输入参数设置，在测试过程中获取界面的输入值，context.getParameter</li>
+<li>为了能爱测试监听器上看到客观性能测试，请求响应消息，在runTest方法中测试过程关键点设置<ul>
+<li>测试开始，测试结束时间 SampleResult   sampleStart（） sampleEnd()</li>
+<li>测试成功和失败的判定 result.setSuccessful() setFailure</li>
+</ul>
+</li>
+<li>导出java项目为一个jar包，放入jmeter lib\ext目录下，重启</li>
+<li>在jmeter测试计划中新增javaSample请求，就可以在类名称中找到测试类了。</li>
 </ol>
 
         </div>
