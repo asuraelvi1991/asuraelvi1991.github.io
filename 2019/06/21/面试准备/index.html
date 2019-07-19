@@ -100,7 +100,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-06-21</span>
-            <span class="time">22:27:57</span>
+            <span class="time">11:43:58</span>
           </span>
           
           <!--  Categories  -->
@@ -122,7 +122,87 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h1 id="java-容器"><a href="#java-容器" class="headerlink" title="java 容器"></a>java 容器</h1><h1 id="spring的知识"><a href="#spring的知识" class="headerlink" title="spring的知识"></a>spring的知识</h1><h1 id="测试架构"><a href="#测试架构" class="headerlink" title="测试架构"></a>测试架构</h1><h1 id="spring里面-Test的原理"><a href="#spring里面-Test的原理" class="headerlink" title="spring里面@Test的原理"></a>spring里面@Test的原理</h1><h1 id="mq、cat、lschedular、dubbo的原理"><a href="#mq、cat、lschedular、dubbo的原理" class="headerlink" title="mq、cat、lschedular、dubbo的原理"></a>mq、cat、lschedular、dubbo的原理</h1><h1 id="自己做的小工具"><a href="#自己做的小工具" class="headerlink" title="自己做的小工具"></a>自己做的小工具</h1><h1 id="最有意义的bug"><a href="#最有意义的bug" class="headerlink" title="最有意义的bug"></a>最有意义的bug</h1><h1 id="最满意的测试"><a href="#最满意的测试" class="headerlink" title="最满意的测试"></a>最满意的测试</h1><h1 id="负责的项目"><a href="#负责的项目" class="headerlink" title="负责的项目"></a>负责的项目</h1><h1 id="常用的包"><a href="#常用的包" class="headerlink" title="常用的包"></a>常用的包</h1><p>测试相关的包<br>testng<br>poi 操作excel、word等文件的包</p>
+          <h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><ul>
+<li>创建型模式分为以下几种。<ul>
+<li>单例（Singleton）模式：某个类只能生成一个实例，该类提供了一个全局访问点供外部获取该实例，其拓展是有限多例模式。</li>
+<li>原型（Prototype）模式：将一个对象作为原型，通过对其进行复制而克隆出多个和原型类似的新实例。</li>
+<li>工厂方法（FactoryMethod）模式：定义一个用于创建产品的接口，由子类决定生产什么产品。</li>
+<li>抽象工厂（AbstractFactory）模式：提供一个创建产品族的接口，其每个子类可以生产一系列相关的产品。</li>
+<li>建造者（Builder）模式：将一个复杂对象分解成多个相对简单的部分，然后根据不同需要分别创建它们，最后构建成该复杂对象。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>结构型模式分为以下 7 种：</p>
+<ul>
+<li>代理（Proxy）模式：为某对象提供一种代理以控制对该对象的访问。即客户端通过代理间接地访问该对象，从而限制、增强或修改该对象的一些特性。</li>
+<li>适配器（Adapter）模式：将一个类的接口转换成客户希望的另外一个接口，使得原本由于接口不兼容而不能一起工作的那些类能一起工作。</li>
+<li>桥接（Bridge）模式：将抽象与实现分离，使它们可以独立变化。它是用组合关系代替继承关系来实现的，从而降低了抽象和实现这两个可变维度的耦合度。</li>
+<li>装饰（Decorator）模式：动态地给对象增加一些职责，即增加其额外的功能。</li>
+<li>外观（Facade）模式：为多个复杂的子系统提供一个一致的接口，使这些子系统更加容易被访问。</li>
+<li>享元（Flyweight）模式：运用共享技术来有效地支持大量细粒度对象的复用。</li>
+<li>组合（Composite）模式：将对象组合成树状层次结构，使用户对单个对象和组合对象具有一致的访问性。</li>
+</ul>
+</li>
+<li><p>行为型模式是 GoF 设计模式中最为庞大的一类，它包含以下 11 种模式。</p>
+<ul>
+<li>模板方法（Template Method）模式：定义一个操作中的算法骨架，将算法的一些步骤延迟到子类中，使得子类在可以不改变该算法结构的情况下重定义该算法的某些特定步骤。</li>
+<li>策略（Strategy）模式：定义了一系列算法，并将每个算法封装起来，使它们可以相互替换，且算法的改变不会影响使用算法的客户。</li>
+<li>命令（Command）模式：将一个请求封装为一个对象，使发出请求的责任和执行请求的责任分割开。</li>
+<li>职责链（Chain of Responsibility）模式：把请求从链中的一个对象传到下一个对象，直到请求被响应为止。通过这种方式去除对象之间的耦合。</li>
+<li>状态（State）模式：允许一个对象在其内部状态发生改变时改变其行为能力。</li>
+<li>观察者（Observer）模式：多个对象间存在一对多关系，当一个对象发生改变时，把这种改变通知给其他多个对象，从而影响其他对象的行为。</li>
+<li>中介者（Mediator）模式：定义一个中介对象来简化原有对象之间的交互关系，降低系统中对象间的耦合度，使原有对象之间不必相互了解。</li>
+<li>迭代器（Iterator）模式：提供一种方法来顺序访问聚合对象中的一系列数据，而不暴露聚合对象的内部表示。</li>
+<li>访问者（Visitor）模式：在不改变集合元素的前提下，为一个集合中的每个元素提供多种访问方式，即每个元素有多个访问者对象访问。</li>
+<li>备忘录（Memento）模式：在不破坏封装性的前提下，获取并保存一个对象的内部状态，以便以后恢复它。</li>
+<li>解释器（Interpreter）模式：提供如何定义语言的文法，以及对语言句子的解释方法，即解释器。</li>
+</ul>
+</li>
+</ul>
+<p>Spring 框架中都用到了哪些设计模式？<br>（1）工厂模式：BeanFactory就是简单工厂模式的体现，用来创建对象的实例；<br>（2）单例模式：Bean默认为单例模式。<br>（3）代理模式：Spring的AOP功能用到了JDK的动态代理和CGLIB字节码生成技术；<br>（4）模板方法：用来解决代码重复的问题。比如. RestTemplate, JmsTemplate, JpaTemplate。<br>（5）观察者模式：定义对象键一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都会得到通知被制动更新，如Spring中listener的实现–ApplicationListener。</p>
+<h1 id="java-容器"><a href="#java-容器" class="headerlink" title="java 容器"></a>java 容器</h1><ul>
+<li><p>声明式事务管理建立在AOP之上的。其本质是通过AOP功能，对方法前后进行拦截，将事务处理的功能编织到拦截的方法中，也就是在目标方法开始之前加入一个事务，在执行完目标方法之后根据执行情况提交或者回滚事务。</p>
+</li>
+<li><p>Spring 的优点？</p>
+<ul>
+<li>spring属于低侵入式设计，代码的污染极低；</li>
+<li>spring的DI机制将对象之间的依赖关系交由框架处理，减低组件的耦合性；</li>
+<li>Spring提供了AOP技术，支持将一些通用任务，如安全、事务、日志、权限等进行集中式管理，从而提供更好的复用。</li>
+<li>spring对于主流的应用框架提供了集成支持。</li>
+</ul>
+</li>
+<li><p>AOP，一般称为面向切面</p>
+<ul>
+<li>作为面向对象的一种补充，用于将那些与业务无关，但却对多个对象产生影响的公共行为和逻辑，抽取并封装为一个可重用的模块，这个模块被命名为“切面”（Aspect），减少系统中的重复代码，降低了模块间的耦合度，同时提高了系统的可维护性。可用于权限认证、日志、事务处理。</li>
+</ul>
+</li>
+<li><p>BeanFactory和ApplicationContext有什么区别？</p>
+<ul>
+<li><p>BeanFactory和ApplicationContext是Spring的两大核心接口，都可以当做Spring的容器。其中ApplicationContext是BeanFactory的子接口。</p>
+</li>
+<li><p>BeanFactory：是Spring里面最底层的接口，包含了各种Bean的定义，读取bean配置文档，管理bean的加载、实例化，控制bean的生命周期，维护bean之间的依赖关系。</p>
+</li>
+<li><p>ApplicationContext接口作为BeanFactory的派生，除了提供BeanFactory所具有的功能外，还提供了更完整的框架功能：<br>  ①继承MessageSource，因此支持国际化。<br>  ②统一的资源文件访问方式。<br>  ③提供在监听器中注册bean的事件。<br>  ④同时加载多个配置文件。<br>  ⑤载入多个（有继承关系）上下文 ，使得每一个上下文都专注于一个特定的层次，比如应用的web层。</p>
+</li>
+<li><p>bean和ApplicationContext区别</p>
+<ul>
+<li>BeanFactroy采用的是延迟加载形式来注入Bean的，即只有在使用到某个Bean时(调用getBean())，才对该Bean进行加载实例化。这样，我们就不能发现一些存在的Spring的配置问题。如果Bean的某一个属性没有注入，BeanFacotry加载后，直至第一次使用调用getBean方法才会抛出异常。</li>
+<li>ApplicationContext，它是在容器启动时，一次性创建了所有的Bean。这样，在容器启动时，我们就可以发现Spring中存在的配置错误，这样有利于检查所依赖属性是否注入。 ApplicationContext启动后预载入所有的单实例Bean，通过预载入单实例bean ,确保当你需要的时候，你就不用等待，因为它们已经创建好了。</li>
+<li>相对于基本的BeanFactory，ApplicationContext 唯一的不足是占用内存空间。当应用程序配置Bean较多时，程序启动较慢。</li>
+</ul>
+</li>
+<li><p>BeanFactory通常以编程的方式被创建，ApplicationContext还能以声明的方式创建，如使用ContextLoader。</p>
+</li>
+<li><p>BeanFactory和ApplicationContext都支持BeanPostProcessor、BeanFactoryPostProcessor的使用，但两者之间的区别是：BeanFactory需要手动注册，而ApplicationContext则是自动注册。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="spring的知识"><a href="#spring的知识" class="headerlink" title="spring的知识"></a>spring的知识</h1><h1 id="测试架构"><a href="#测试架构" class="headerlink" title="测试架构"></a>测试架构</h1><p>java + testng<br>http 的包基于 httpclient ，jersey<br>数据库 支持 mysql oracle<br>多工程<br>基础层 核心jar 公共工具类<br>app 层，调用各个业务子系统的接口方法，和dto gson 枚举类等<br>业务层 将业务场景 编写为一个方法 比如 开户 充值 申购 等行为 公共方法给所有场景使用<br>case层 编写case 接口测试、场景测试、异常测试等等<br>@dataprovider @Test<br>模板模式、工厂、单例、策略模式、建造者模式</p>
+<h1 id="spring里面-Test的原理"><a href="#spring里面-Test的原理" class="headerlink" title="spring里面@Test的原理"></a>spring里面@Test的原理</h1><h1 id="mq、cat、lschedular、dubbo的原理"><a href="#mq、cat、lschedular、dubbo的原理" class="headerlink" title="mq、cat、lschedular、dubbo的原理"></a>mq、cat、lschedular、dubbo的原理</h1><h1 id="自己做的小工具"><a href="#自己做的小工具" class="headerlink" title="自己做的小工具"></a>自己做的小工具</h1><p>1、 自动化dailyrun在jenkins上运行的数据，记录在数据库中，编写查看所有通过率的一个页面平台，<br>展示每周各组自动化通过率情况、展示每个自动化的每周通过率，并发送邮件给对应测试引起关注。<br>2、 用例生成、复制开发代码，把注解path 信息 post get 以及params和方法名行截取，通过字符串解析，生成符合自动化测试app调用的caller方法，<br>    根据参数类型，生成边界值的dataprovider，直接生成testcase代码模板<br>3、 CI 项目<br>    在已有平台上移交gitlab，会给本ci系统发请求，开始jenkins打包，轮训到打包成功之后，调用jenkins跑冒烟测试自动化，然后轮训自动化运行状态，发送邮件。<br>4、 精准测试，根据git diff 命令行信息，获取到当前分支与之前分支的差异，并将更改点<br>5、 用户敏感信息加解密、短信otp的解密<br>6、 支付的mockit，mock银行返回报文，涉及解密、加签、加密，组装报文等工作内容<br>7、 用户充值、取现、开户授权等功能，直接模拟银行回调，节约测试时间。</p>
+<h1 id="最有意义的bug"><a href="#最有意义的bug" class="headerlink" title="最有意义的bug"></a>最有意义的bug</h1><p>1、 1500投资人*2000借款人 量级下， 随机生成投资金额，调用调增、并生成文件模拟普惠、p2p段</p>
+<h1 id="最满意的测试"><a href="#最满意的测试" class="headerlink" title="最满意的测试"></a>最满意的测试</h1><h1 id="负责的项目"><a href="#负责的项目" class="headerlink" title="负责的项目"></a>负责的项目</h1><h1 id="常用的包"><a href="#常用的包" class="headerlink" title="常用的包"></a>常用的包</h1><p>测试相关的包<br>testng<br>poi 操作excel、word等文件的包</p>
 
         </div>
       </div>
